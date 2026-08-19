@@ -1,0 +1,6 @@
+{
+  "name": "Sk8ani",
+  "description": "Professional 3D animation, modeling and rendering studio with real-time viewport, timeline keyframing, PBR materials, physics simulation and Neomorphic design.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
