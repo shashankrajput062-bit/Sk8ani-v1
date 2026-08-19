@@ -24,11 +24,23 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v5
 
-      - name: Check Gradle installation
-        run: gradle --version
-
       - name: Build Debug APK
-        run: gradle assembleDebug --stacktrace --info --no-configuration-cache --no-daemon
+        run: |
+          gradle assembleDebug \
+            --stacktrace \
+            --info \
+            --no-configuration-cache \
+            --no-daemon \
+            2>&1 | tee build.log
+          exit ${PIPESTATUS[0]}
+
+      - name: Show Kotlin compilation errors
+        if: failure()
+        run: |
+          echo "========== KOTLIN COMPILATION ERRORS =========="
+          grep -E "e: |error:|ERROR:" build.log || true
+          echo "========== LAST 100 LINES =========="
+          tail -n 100 build.log
 
       - name: Find APK
         if: success()
