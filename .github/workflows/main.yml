@@ -24,15 +24,15 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v5
 
-      - name: Make Gradle wrapper executable
-        run: chmod +x ./gradlew
+      - name: Check Gradle installation
+        run: gradle --version
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug --stacktrace --no-configuration-cache --no-daemon
+        run: gradle assembleDebug --stacktrace --no-configuration-cache --no-daemon
 
       - name: Find APK
         if: success()
-        run: find app/build/outputs/apk -type f -name "*.apk" -print
+        run: find . -type f -name "*.apk" -print
 
       - name: Upload APK
         if: success()
