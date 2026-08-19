@@ -28,7 +28,7 @@ jobs:
         run: gradle --version
 
       - name: Build Debug APK
-        run: gradle assembleDebug --stacktrace --no-configuration-cache --no-daemon
+        run: gradle assembleDebug --stacktrace --info --no-configuration-cache --no-daemon
 
       - name: Find APK
         if: success()
